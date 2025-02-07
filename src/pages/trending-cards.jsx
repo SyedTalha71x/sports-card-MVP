@@ -17,7 +17,7 @@ function CardPack({ id, boxCount, cardsAvailable, name, description, price }) {
       onClick={()=>{dynamicRedirect(id)}}
       className="bg-[#FFFFFF] rounded-2xl cursor-pointer p-4 flex flex-col"
     >
-      <div className="relative aspect-square mb-4 p-4 bg-[#F3F3F3] rounded-xl ">
+      <div className="relative  mb-4 p-4 bg-[#F3F3F3] rounded-xl ">
         <div className="flex justify-start  items-center gap-1">
           <div className=" bg-[#9C6F34] text-white text-sm px-2 py-1 rounded">
             {boxCount} Boxes
