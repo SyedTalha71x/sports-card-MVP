@@ -13,6 +13,13 @@ import ForgotPassword from "./authentication/forget-password";
 import CardDetailsPack from "./pages/single-card";
 import CheckoutPage from "./pages/checkout";
 
+import DashboardLayout from "./layout/dashboard-layout";
+import DashboardHome from "./partials/dashboard";
+import AccountDetails from "./partials/account-details";
+import MyOrders from './partials/my-orders'
+import Rewards from './partials/my-rewards'
+import BillingSection from "./partials/billing-section";
+
 function App() {
   return (
     <BrowserRouter>
@@ -35,6 +42,18 @@ function AppContent() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/card-details-pack/:id" element={<CardDetailsPack />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+
+
+
+          <Route path="dashboard" element={<DashboardLayout />}>
+            <Route path="main-dashboard" element={<DashboardHome />} />
+            <Route path="account-details" element={<AccountDetails />} />
+            <Route path="my-orders" element={<MyOrders />} />
+            <Route path="my-rewards" element={<Rewards />} />
+            <Route path="billing" element={<BillingSection />} />
+
+
+          </Route>
       </Routes>
       {!isCheckoutPage && <Footer />}
     </>
