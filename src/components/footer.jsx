@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Facebook, Instagram } from "lucide-react";
 import NavLogo from "../../public/nav_logo.svg";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -65,22 +66,22 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row  justify-between items-center mb-12">
-          <a href="/" className="mb-6 md:mb-0">
+          <Link to={"/"} className="mb-6 md:mb-0">
             <img src={NavLogo} alt="" />
-          </a>
+          </Link>
           <nav className="flex flex-wrap justify-center gap-10">
-            <a href="/" className="text-[#FFFFFF] text-sm hover:text-white">
+            <Link to={"/user-profile/my-orders"} className="text-[#FFFFFF] text-sm hover:text-white">
               My Orders
-            </a>
-            <a href="/" className="text-[#FFFFFF] text-sm hover:text-white">
+            </Link>
+            <Link to={"/user-profile/dashboard"} className="text-[#FFFFFF] text-sm hover:text-white">
               My Account
-            </a>
-            <a href="/" className="text-[#FFFFFF] text-sm hover:text-white">
+            </Link>
+            <Link to={"/faqs"} className="text-[#FFFFFF] text-sm hover:text-white">
               FAQs
-            </a>
-            <a href="/" className="text-[#FFFFFF] text-sm hover:text-white">
+            </Link>
+            <Link to={"/privacy-policy"} className="text-[#FFFFFF] text-sm hover:text-white">
               Privacy Policy
-            </a>
+            </Link>
           </nav>
         </div>
 

@@ -22,18 +22,21 @@ export default function Navbar() {
     location.pathname.includes("login-signup") ||
     location.pathname.includes("forgot-password") ||
     location.pathname.includes("card-details-pack") ||
-    location.pathname.includes("dashboard");;
+    location.pathname.includes("user-profile") ||
+    location.pathname.includes("faqs") ||
+    location.pathname.includes("privacy-policy");;
+
 
 
 
   const showLoginSignup =
     location.pathname.includes("login-signup") || location.pathname.includes("forgot-password");
 
-    const isSingleCardDetail = location.pathname.includes("card-details-pack") || location.pathname.includes("dashboard");
+    const isSingleCardDetail = location.pathname.includes("card-details-pack") || location.pathname.includes("user-profile") || location.pathname.includes("faqs") || location.pathname.includes("privacy-policy");
 
 
   const redirectToDashboard = () =>{
-    navigate('/dashboard/main-dashboard');
+    navigate('/user-profile/dashboard');
   }
 
   return (

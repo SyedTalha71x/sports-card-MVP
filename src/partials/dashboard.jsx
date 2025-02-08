@@ -13,7 +13,7 @@ const DashboardHome = () => {
         <p className="text-gray-800">
           Hello <span className="text-[#C75000] underline cursor-pointer font-bold">{username}</span>{' '}
           (not {username}?{' '}
-          <Link to="/logout" className="text-[#C75000] font-bold cursor-pointer underline">
+          <Link to="/login-signup" className="text-[#C75000] font-bold cursor-pointer underline">
             Logout
           </Link>
           )
@@ -22,23 +22,23 @@ const DashboardHome = () => {
 
       <p className="text-gray-700 mb-4">
         From your account dashboard you can view your{' '}
-        <Link to="/account/orders" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/dashboard/my-orders" className="text-[#C75000] font-bold cursor-pointer underline">
           recent orders
         </Link>
         , manage your{' '}
-        <Link to="/account/billing" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/dashboard/billing" className="text-[#C75000] font-bold cursor-pointer underline">
           shipping and billing
         </Link>
         ,{' '}
-        <Link to="/account/addresses" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/dashboard/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
           addresses
         </Link>{' '}
         and{' '}
-        <Link to="/account/password" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/dashboard/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
           edit your password
         </Link>{' '}
         and{' '}
-        <Link to="/account/details" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/dashboard/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
           account details
         </Link>
         .

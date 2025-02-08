@@ -19,6 +19,8 @@ import AccountDetails from "./partials/account-details";
 import MyOrders from './partials/my-orders'
 import Rewards from './partials/my-rewards'
 import BillingSection from "./partials/billing-section";
+import FAQPage from "./partials/faqs";
+import PrivacyPolicy from './partials/privacy-policy'
 
 function App() {
   return (
@@ -42,11 +44,14 @@ function AppContent() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/card-details-pack/:id" element={<CardDetailsPack />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/faqs" element={<FAQPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
 
 
-          <Route path="dashboard" element={<DashboardLayout />}>
-            <Route path="main-dashboard" element={<DashboardHome />} />
+
+          <Route path="user-profile" element={<DashboardLayout />}>
+            <Route path="dashboard" element={<DashboardHome />} />
             <Route path="account-details" element={<AccountDetails />} />
             <Route path="my-orders" element={<MyOrders />} />
             <Route path="my-rewards" element={<Rewards />} />

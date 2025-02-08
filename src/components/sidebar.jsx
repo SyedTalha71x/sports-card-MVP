@@ -8,11 +8,11 @@ const Sidebar = () => {
       <div className="bg-[#FFFFFF] rounded-lg shadow-sm">
         <div className="flex flex-col">
           {[
-            { to: "/dashboard/main-dashboard", label: "Dashboard" },
-            { to: "/dashboard/account-details", label: "Account Details" },
-            { to: "/dashboard/my-orders", label: "My Orders" },
-            { to: "/dashboard/my-rewards", label: "My Rewards" },
-            { to: "/dashboard/billing", label: "Billing Address" },
+            { to: "/user-profile/dashboard", label: "Dashboard" },
+            { to: "/user-profile/account-details", label: "Account Details" },
+            { to: "/user-profile/my-orders", label: "My Orders" },
+            { to: "/user-profile/my-rewards", label: "My Rewards" },
+            { to: "/user-profile/billing", label: "Billing Address" },
             { to: "/login-signup", label: "Logout" },
           ].map((link) => (
             <NavLink

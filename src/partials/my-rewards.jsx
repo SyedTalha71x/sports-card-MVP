@@ -19,12 +19,12 @@ const RewardsSection = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {[1, 2, 3].map((card) => (
-              <div key={card} className="bg-gray-100 rounded-lg p-2 sm:p-4">
-                <div className="aspect-[2/3] relative">
+              <div key={card} className="bg-gray-100 rounded-lg p-4">
+                <div className="w-full h-64 flex justify-center items-center overflow-hidden rounded-lg">
                   <img
                     src={CardsImage}
                     alt={`Trading Card ${card}`}
-                    className="w-full h-full object-contain"
+                    className="w-auto h-full object-contain"
                   />
                 </div>
               </div>
@@ -37,4 +37,3 @@ const RewardsSection = () => {
 }
 
 export default RewardsSection
-
