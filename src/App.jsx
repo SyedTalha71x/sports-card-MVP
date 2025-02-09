@@ -21,6 +21,7 @@ import Rewards from './partials/my-rewards'
 import BillingSection from "./partials/billing-section";
 import FAQPage from "./partials/faqs";
 import PrivacyPolicy from './partials/privacy-policy'
+import AddPaymentMethod from "./pages/add-payment-method";
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function AppContent() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/faqs" element={<FAQPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/add-payment-method" element={<AddPaymentMethod />} />
+
 
 
 

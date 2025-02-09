@@ -33,7 +33,7 @@ export default function PackDetails() {
   ];
 
   const redirect = () => {
-    window.location.href = "/checkout";
+    window.location.href = "/add-payment-method";
   };
 
   return (

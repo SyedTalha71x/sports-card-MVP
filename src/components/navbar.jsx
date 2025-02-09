@@ -24,13 +24,15 @@ export default function Navbar() {
     location.pathname.includes("card-details-pack") ||
     location.pathname.includes("user-profile") ||
     location.pathname.includes("faqs") ||
-    location.pathname.includes("privacy-policy");;
+    location.pathname.includes("privacy-policy") ||
+    location.pathname.includes("add-payment-method");;
+
 
 
 
 
   const showLoginSignup =
-    location.pathname.includes("login-signup") || location.pathname.includes("forgot-password");
+    location.pathname.includes("login-signup") || location.pathname.includes("forgot-password") || location.pathname.includes("add-payment-method");
 
     const isSingleCardDetail = location.pathname.includes("card-details-pack") || location.pathname.includes("user-profile") || location.pathname.includes("faqs") || location.pathname.includes("privacy-policy");
 
@@ -38,6 +40,17 @@ export default function Navbar() {
   const redirectToDashboard = () =>{
     navigate('/user-profile/dashboard');
   }
+
+  const redirectToHomePage = () =>{
+    navigate('/');
+  }
+
+  const redirectToLoginSignup = () =>{
+    navigate('/login-signup');
+  }
+
+
+
 
   return (
     <nav
@@ -47,12 +60,12 @@ export default function Navbar() {
     >
       <div className={`max-w-7xl mx-auto ${isStyledAuthPage ? "p-3" : "p-7"}`}>
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-4">
+          <div onClick={redirectToHomePage} className="flex items-center cursor-pointer space-x-4">
             <img src={isStyledAuthPage ? WhiteNavLogo : NavLogo} alt="Navigation Logo" />
           </div>
           <div>
             {showLoginSignup ? (
-              <button className="inline-flex items-center px-4 py-2 bg-[#2F456C] rounded-2xl text-sm font-medium text-white cursor-pointer">
+              <button onClick={redirectToLoginSignup} className="inline-flex items-center px-4 py-2 bg-[#2F456C] rounded-2xl text-sm font-medium text-white cursor-pointer">
                 Login/Signup
               </button>
             ) : (
