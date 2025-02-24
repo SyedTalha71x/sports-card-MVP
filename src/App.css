@@ -33,3 +33,18 @@ body{
   background-size: 30px 30px;
   pointer-events: none;
 } */
+
+.card-flip-wrapper {
+  perspective: 1000px;
+}
+
+.card-flip {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.group:hover .card-flip {
+  transform: rotateY(180deg);
+}
+
+

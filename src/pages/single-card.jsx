@@ -129,7 +129,7 @@ export default function PackDetails() {
                       <img
                         src={card.imageUrl}
                         alt={`Card ${card.id}`}
-                        className="object-contain p-2 h-auto w-auto"
+                        className="object-contain p-2 h-auto w-auto card-flip-wrapper"
                       />
                     </div>
                   ))}
@@ -151,7 +151,7 @@ export default function PackDetails() {
                       <img
                         src={card.imageUrl || "/placeholder.svg"}
                         alt={`Card ${card.id}`}
-                        className="object-contain p-2"
+                        className="object-contain p-2 "
                       />
                     </div>
                   ))}
