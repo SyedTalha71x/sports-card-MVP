@@ -22,23 +22,23 @@ const DashboardHome = () => {
 
       <p className="text-gray-700 mb-4">
         From your account dashboard you can view your{' '}
-        <Link to="/dashboard/my-orders" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/user-profile/my-orders" className="text-[#C75000] font-bold cursor-pointer underline">
           recent orders
         </Link>
         , manage your{' '}
-        <Link to="/dashboard/billing" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/user-profile/billing" className="text-[#C75000] font-bold cursor-pointer underline">
           shipping and billing
         </Link>
         ,{' '}
-        <Link to="/dashboard/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/user-profile/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
           addresses
         </Link>{' '}
         and{' '}
-        <Link to="/dashboard/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/user-profile/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
           edit your password
         </Link>{' '}
         and{' '}
-        <Link to="/dashboard/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
+        <Link to="/user-profile/account-details" className="text-[#C75000] font-bold cursor-pointer underline">
           account details
         </Link>
         .
