@@ -14,14 +14,20 @@ import FAQPage from "./partials/faqs";
 import PrivacyPolicy from "./partials/privacy-policy";
 import AddPaymentMethod from "./pages/add-payment-method";
 
-import DashboardLayout from "./layout/dashboard-layout";
+import DashboardLayout from "./layout/user-profile";
 import DashboardHome from "./partials/dashboard";
 import AccountDetails from "./partials/account-details";
 import MyOrders from "./partials/my-orders";
 import Rewards from "./partials/my-rewards";
 import BillingSection from "./partials/billing-section";
 
-import ScrollToTop from "./layout/Scroll-to-top"; // Import the component
+import ScrollToTop from "./layout/Scroll-to-top";
+
+
+import AdminDashboard from './layout/dashboard-layout'
+import AdminDashbaordHome from './dashboardPages/home'
+import AdminProducts from './dashboardPages/products'
+import AdminUserConfiguration from './dashboardPages/users'
 
 function App() {
   return (
@@ -33,11 +39,11 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const isCheckoutPage = location.pathname.startsWith("/checkout");
+  const isCheckoutPage = location.pathname.startsWith("/checkout") || location.pathname.startsWith("/dashboard");
 
   return (
     <>
-      <ScrollToTop /> {/* Add this line to handle scrolling */}
+      <ScrollToTop />
       {!isCheckoutPage && <Navbar />}
       <Routes>
         <Route path="/" element={<Hero />} />
@@ -55,6 +61,14 @@ function AppContent() {
           <Route path="my-orders" element={<MyOrders />} />
           <Route path="my-rewards" element={<Rewards />} />
           <Route path="billing" element={<BillingSection />} />
+        </Route>
+
+
+        <Route path="dashboard" element={<AdminDashboard />}>
+        <Route path="overview" element={<AdminDashbaordHome />} />
+        <Route path="product-configuration" element={<AdminProducts />} />
+        <Route path="user-configuration" element={<AdminUserConfiguration />} />
+
         </Route>
       </Routes>
       {!isCheckoutPage && <Footer />}
