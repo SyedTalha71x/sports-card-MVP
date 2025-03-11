@@ -404,22 +404,22 @@ const DashboardOverview = () => {
         return <Tag color={color}>{status}</Tag>;
       },
     },
-    {
-      title: "Action",
-      key: "action",
-      fixed: "right",
-      width: 150,
-      render: (_, record) => (
-        <Space size="middle">
-          <Button type="primary" size="small" ghost>
-            Edit
-          </Button>
-          <Button type="primary" size="small" danger>
-            Delete
-          </Button>
-        </Space>
-      ),
-    },
+    // {
+    //   title: "Action",
+    //   key: "action",
+    //   fixed: "right",
+    //   width: 150,
+    //   render: (_, record) => (
+    //     <Space size="middle">
+    //       <Button type="primary" size="small" ghost>
+    //         Edit
+    //       </Button>
+    //       <Button type="primary" size="small" danger>
+    //         Delete
+    //       </Button>
+    //     </Space>
+    //   ),
+    // },
   ];
 
   // Simulate fetching products
