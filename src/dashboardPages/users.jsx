@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import  React from "react"
-import { useState, useEffect } from "react"
-import { Table, Input, Button, Space, Tag, Typography, Spin } from "antd"
-import { SearchOutlined, UserOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons"
+import React from "react";
+import { useState, useEffect } from "react";
+import { Table, Input, Button, Space, Tag, Typography, Spin, Modal, Form, Select } from "antd";
+import { SearchOutlined, UserOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
-const { Title } = Typography
-
+const { Title } = Typography;
+const { Option } = Select;
 
 const sampleUsers = [
   {
@@ -64,47 +64,95 @@ const sampleUsers = [
     status: "inactive",
     lastLogin: "2023-05-01 10:15:33",
   },
-]
+];
 
 const Users = () => {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [searchText, setSearchText] = useState("")
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchText, setSearchText] = useState("");
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [form] = Form.useForm();
 
   // Simulate fetching data
   useEffect(() => {
     const fetchUsers = async () => {
       // In a real app, you would fetch from an API
       setTimeout(() => {
-        setUsers(sampleUsers)
-        setLoading(false)
-      }, 1000)
-    }
+        setUsers(sampleUsers);
+        setLoading(false);
+      }, 1000);
+    };
 
-    fetchUsers()
-  }, [])
+    fetchUsers();
+  }, []);
 
   // Filter users based on search text
   const filteredUsers = users.filter(
     (user) =>
       user.name.toLowerCase().includes(searchText.toLowerCase()) ||
       user.email.toLowerCase().includes(searchText.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchText.toLowerCase()),
-  )
+      user.role.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   // Define status colors
   const getStatusColor = (status) => {
     switch (status) {
       case "active":
-        return "green"
+        return "green";
       case "inactive":
-        return "red"
+        return "red";
       case "pending":
-        return "orange"
+        return "orange";
       default:
-        return "default"
+        return "default";
     }
-  }
+  };
+
+  // Handle edit button click
+  const handleEdit = (record) => {
+    setCurrentUser(record);
+    form.setFieldsValue({
+      name: record.name,
+      email: record.email,
+      role: record.role,
+      status: record.status,
+    });
+    setEditModalVisible(true);
+  };
+
+  // Handle delete button click
+  const handleDelete = (record) => {
+    setCurrentUser(record);
+    setDeleteModalVisible(true);
+  };
+
+  // Handle edit form submission
+  const handleEditSubmit = () => {
+    form.validateFields().then((values) => {
+      const updatedUsers = users.map((user) => {
+        if (user.id === currentUser.id) {
+          return { ...user, ...values };
+        }
+        return user;
+      });
+      
+      setUsers(updatedUsers);
+      setEditModalVisible(false);
+      // In a real app, you would make API call here
+      console.log("User updated:", { id: currentUser.id, ...values });
+    });
+  };
+
+  // Handle delete confirmation
+  const handleDeleteConfirm = () => {
+    const updatedUsers = users.filter((user) => user.id !== currentUser.id);
+    setUsers(updatedUsers);
+    setDeleteModalVisible(false);
+    // In a real app, you would make API call here
+    console.log("User deleted:", currentUser.id);
+  };
 
   const columns = [
     {
@@ -155,18 +203,18 @@ const Users = () => {
       key: "actions",
       render: (_, record) => (
         <Space size="middle">
-          <Button type="text" icon={<EditOutlined />} onClick={() => console.log("Edit user", record.id)} />
-          <Button type="text" danger icon={<DeleteOutlined />} onClick={() => console.log("Delete user", record.id)} />
+          <Button type="text" icon={<EditOutlined />} onClick={() => handleEdit(record)} />
+          <Button type="text" danger icon={<DeleteOutlined />} onClick={() => handleDelete(record)} />
         </Space>
       ),
       responsive: ["xs", "sm", "md", "lg", "xl"],
     },
-  ]
+  ];
 
   const tableProps = {
     scroll: { x: "max-content" },
     size: window.innerWidth < 768 ? "small" : "middle",
-  }
+  };
 
   return (
     <div className="p-4 md:p-6">
@@ -195,7 +243,7 @@ const Users = () => {
             columns={columns}
             dataSource={filteredUsers}
             rowKey="id"
-            scroll={{x: 1000}}
+            scroll={{ x: 1000 }}
             pagination={{
               pageSize: 5,
               showSizeChanger: true,
@@ -207,9 +255,76 @@ const Users = () => {
           />
         </div>
       )}
+
+      {/* Edit User Modal */}
+      <Modal
+        title="Edit User"
+        open={editModalVisible}
+        onCancel={() => setEditModalVisible(false)}
+        onOk={handleEditSubmit}
+        okText="Save Changes"
+      >
+        <Form
+          form={form}
+          layout="vertical"
+          initialValues={{ remember: true }}
+        >
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[{ required: true, message: "Please input user name!" }]}
+          >
+            <Input prefix={<UserOutlined />} placeholder="Name" />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            label="Email"
+            rules={[
+              { required: true, message: "Please input email address!" },
+              { type: "email", message: "Please enter a valid email!" },
+            ]}
+          >
+            <Input placeholder="Email" />
+          </Form.Item>
+          <Form.Item
+            name="role"
+            label="Role"
+            rules={[{ required: true, message: "Please select user role!" }]}
+          >
+            <Select placeholder="Select a role">
+              <Option value="Admin">Admin</Option>
+              <Option value="User">User</Option>
+              <Option value="Editor">Editor</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="status"
+            label="Status"
+            rules={[{ required: true, message: "Please select user status!" }]}
+          >
+            <Select placeholder="Select status">
+              <Option value="active">Active</Option>
+              <Option value="inactive">Inactive</Option>
+              <Option value="pending">Pending</Option>
+            </Select>
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      {/* Delete User Modal */}
+      <Modal
+        title="Delete User"
+        open={deleteModalVisible}
+        onCancel={() => setDeleteModalVisible(false)}
+        onOk={handleDeleteConfirm}
+        okText="Delete"
+        okButtonProps={{ danger: true }}
+      >
+        <p>Are you sure you want to delete user {currentUser?.name}?</p>
+        <p>This action cannot be undone.</p>
+      </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Users
-
+export default Users;
